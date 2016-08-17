@@ -63,10 +63,6 @@ if [ $# -eq 1 ]; then
   fi
 
   if [ $1 = "test" ]; then
-    spec
-  fi
-
-  if [ $1 = "all" ]; then
     clean
     build
     run
