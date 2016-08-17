@@ -1,9 +1,0 @@
-#!/bin/bash
-
-set -e
-
-docker kill mantle > /dev/null 2>&1 || true
-docker rm   mantle > /dev/null 2>&1 || true
-docker rmi  hivelocityinc/mantle > /dev/null 2>&1 || true
-
-docker build -t hivelocityinc/mantle .
