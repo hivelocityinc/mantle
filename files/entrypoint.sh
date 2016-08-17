@@ -2,4 +2,4 @@
 
 set -e
 
-exec /usr/bin/supervisord --nodaemon -c /etc/supervisord.conf
+exec /usr/bin/supervisord --nodaemon -c /etc/supervisor/supervisord.conf

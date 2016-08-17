@@ -5,7 +5,9 @@ RUN apk add --update \
   bash \
   supervisor \
   nginx \
-  && mkdir /run/nginx/ \
+  && mkdir /var/run/nginx/ \
+  && mkdir /var/run/supervisor/ \
+  && rm -rf /etc/supervisord.conf \
   && rm -rf /var/cache/apk/*
 
 ADD files /
