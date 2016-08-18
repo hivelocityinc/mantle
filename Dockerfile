@@ -1,8 +1,10 @@
 FROM alpine:3.4
 MAINTAINER Ryuichi Komeda <komeda@hivelocity.co.jp>
 
-RUN apk add --update \
-  bash && \
+RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
+
+  apk add --update \
+    bash && \
 
   # Installs Supervisor
   apk add --update \
@@ -26,7 +28,10 @@ RUN apk add --update \
     php5-xml \
     php5-mcrypt \
     php5-imap \
-    php5-opcache && \
+    php5-opcache \
+    php5-imagick \
+    php5-memcache \
+    php5-redis && \
 
   # Clean up cache
   rm -rf /var/cache/apk/*
