@@ -3,9 +3,6 @@ MAINTAINER Ryuichi Komeda <komeda@hivelocity.co.jp>
 
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
 
-  apk add --update \
-    bash && \
-
   # Installs Supervisor
   apk add --update \
     supervisor && \
