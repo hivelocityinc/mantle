@@ -31,6 +31,7 @@ run() {
 
   docker run \
     -d \
+    -u root \
     --name ${CONTAINER_NAME} \
     -p 80:80 \
     ${IMAGE_NAME}:latest
