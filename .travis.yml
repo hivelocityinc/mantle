@@ -1,0 +1,21 @@
+sudo: required
+
+language: ruby
+
+services:
+  - docker
+
+env:
+  - TARGET_CONTAINER_ID=mantle
+
+before_install:
+  - docker build -t hivelocityinc/mantle .
+  - docker images
+  - docker run -d --name $TARGET_CONTAINER_ID -p 80:80 hivelocityinc/mantle
+  - docker ps -a
+
+script:
+  - bundle exec rake
+
+after_success:
+  - '[ "$TRAVIS_BRANCH" == master ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && docker push hivelocityinc/mantle'

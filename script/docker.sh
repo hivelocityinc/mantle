@@ -41,7 +41,7 @@ run() {
 spec() {
   echo "${BLUE}==> Start to image test...${CLEAR}"
 
-  bundle exec rake
+  export TARGET_CONTAINER_ID=${CONTAINER_NAME} && bundle exec rake
 
   echo "${GREEN}==> Finished image test!${CLEAR}"
 }
