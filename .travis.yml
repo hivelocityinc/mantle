@@ -1,0 +1,13 @@
+sudo: required
+
+language: ruby
+
+services:
+  - docker
+
+before_install:
+  - docker build -t hivelocityinc/mantle .
+  - docker run -d --name mantle -p 80:80 hivelocityinc/mantle
+
+script:
+  - bundle exec rake
