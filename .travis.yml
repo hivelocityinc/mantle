@@ -5,9 +5,12 @@ language: ruby
 services:
   - docker
 
+env:
+  - TARGET_CONTAINER_ID=matle
+
 before_install:
   - docker build -t hivelocityinc/mantle .
-  - docker run -d --name mantle -p 80:80 hivelocityinc/mantle
+  - docker run -d --name $TARGET_CONTAINER_ID -p 80:80 hivelocityinc/mantle
 
 script:
-  - echo $DOCKER_HOST
+  - bundle exec rake
