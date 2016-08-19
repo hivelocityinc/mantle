@@ -29,9 +29,7 @@ build() {
 run() {
   echo "${BLUE}==> Start to run container...${CLEAR}"
 
-  docker run \
-    -d \
-    -u root \
+  docker run -d \
     --name ${CONTAINER_NAME} \
     -p 80:80 \
     ${IMAGE_NAME}:latest
