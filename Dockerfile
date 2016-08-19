@@ -10,7 +10,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
   # Installs Nginx
   apk add --update \
     nginx && \
-  mkdir /var/run/nginx/ &&
+  mkdir /var/run/nginx/ && \
   mkdir /var/www/html/ && \
   # Installs PHP
   apk add --update \
