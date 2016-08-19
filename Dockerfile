@@ -2,18 +2,15 @@ FROM alpine:3.4
 MAINTAINER Ryuichi Komeda <komeda@hivelocity.co.jp>
 
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
-
   # Installs Supervisor
   apk add --update \
     supervisor && \
   mkdir /var/run/supervisor/ && \
   rm -rf /etc/supervisord.conf && \
-
   # Installs Nginx
   apk add --update \
     nginx && \
   mkdir /var/run/nginx/ && \
-
   # Installs PHP
   apk add --update \
     php5 \
@@ -29,11 +26,10 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
     php5-imagick \
     php5-memcache \
     php5-redis && \
-
   # Clean up cache
   rm -rf /var/cache/apk/*
 
-ADD files /
+COPY files /
 
 RUN chmod +x /entrypoint.sh
 
