@@ -30,9 +30,11 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
     php5-pdo \
     php5-gd \
     php5-xml \
+    php5-json \
     php5-mcrypt \
     php5-imap \
     php5-opcache \
+    php5-openssl \
     php5-imagick \
     php5-memcache \
     php5-redis && \
