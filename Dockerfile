@@ -1,7 +1,17 @@
 FROM alpine:3.4
 MAINTAINER Ryuichi Komeda <komeda@hivelocity.co.jp>
 
+ENV ENTRYKIT_VERSION 0.4.0
+
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
+  # Installs EntryKit
+  apk add --update openssl && \
+  wget https://github.com/progrium/entrykit/releases/download/v${ENTRYKIT_VERSION}/entrykit_${ENTRYKIT_VERSION}_Linux_x86_64.tgz && \
+  tar -xvzf entrykit_${ENTRYKIT_VERSION}_Linux_x86_64.tgz && \
+  rm entrykit_${ENTRYKIT_VERSION}_Linux_x86_64.tgz && \
+  mv entrykit /bin/entrykit && \
+  chmod +x /bin/entrykit && \
+  entrykit --symlink && \
   # Installs Supervisor
   apk add --update \
     supervisor && \
@@ -35,4 +45,10 @@ RUN chmod +x /entrypoint.sh
 
 EXPOSE 80 443
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT [ \
+"render", \
+  "/etc/nginx/nginx.conf", \
+  "/etc/nginx/conf.d/default.conf", \
+  "/etc/php5/php.ini", \
+  "/etc/php5/php-fpm.conf", "--", \
+"/entrypoint.sh" ]

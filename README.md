@@ -24,6 +24,12 @@ $ docker run -d \
   hivelocityinc/mantle
 ```
 
+## Configuration
+
+| ENV | default | Description |
+|:---|:---|
+| WORKER_PROCESSES | `1` | nginx werker_processes |
+| SERVER_NAME | `localhost` | your site's hostname |
 
 ## Develop
 
