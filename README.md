@@ -29,7 +29,7 @@ $ docker run -d \
 You can change the config of middleware when you set environment value of the following:
 
 | ENV Key | Default Value | Description |
-|:---|:---|
+|:---|:---|:---|
 | WORKER_PROCESSES | `1` | worker processes of nginx |
 | SERVER_NAME | `localhost` | hostname |
 | DOCUMENT_ROOT | `/usr/share/nginx/html` | document root path |
