@@ -26,10 +26,26 @@ $ docker run -d \
 
 ## Configuration
 
-| ENV | default | Description |
+You can change the config of middleware when you set environment value of the following:
+
+| ENV Key | Default Value | Description |
 |:---|:---|
-| WORKER_PROCESSES | `1` | nginx werker_processes |
-| SERVER_NAME | `localhost` | your site's hostname |
+| WORKER_PROCESSES | `1` | worker processes of nginx |
+| SERVER_NAME | `localhost` | hostname |
+| DOCUMENT_ROOT | `/usr/share/nginx/html` | document root path |
+
+**Example**
+
+```bash
+$ docker run -d \
+  --name exampleapp \
+  -p 80:80 \
+  -e WORKER_PROCESSES=4 \
+  -e SERVER_NAME='exampleapp.dev' \
+  -e DOCUMENT_ROOT='/var/www/html/exampleapp/public' \
+  -v `pwd`/src:/var/www/html/exampleapp \
+  hivelocityinc/mantle
+```
 
 ## Develop
 
@@ -39,7 +55,7 @@ Firstly, you have to install a gem package for Serverspec.
 $ bundle install vendor/bundle
 ```
 
-### Build image from Dockerfile
+**Build image from Dockerfile**
 
 ```bash
 $ sh ./script/docker.sh build
@@ -48,7 +64,7 @@ $ sh ./script/docker.sh build
 $ docker build -t hivelocityinc/mantle .
 ```
 
-### Run container
+**Run container**
 
 ```bash
 $ sh ./script/docker.sh run
@@ -60,7 +76,7 @@ $ docker run -d \
   hivelocityinc/mantle
 ```
 
-### Clean up to image and container
+**Clean up to image and container**
 
 ```bash
 $ sh ./script/docker.sh clean
@@ -71,7 +87,7 @@ $ docker rm mantle
 $ docker rmi hivelocityinc/mantle
 ```
 
-### Testing
+**Testing**
 
 ```bash
 $ sh ./script/docker.sh test
