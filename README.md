@@ -10,8 +10,8 @@ The Dockerfile for development environment with LEMP Stack.
 It is based on Alpine Linux and includes middleware of the following:
 
 - **Supervisor** : 3.2.0
-- **Nginx** : 1.10.1
-- PHP 5.6
+- **Nginx** : 1.10
+- **PHP** 5.6
 - MySQL(MariaDB)
 
 
