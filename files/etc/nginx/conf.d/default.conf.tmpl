@@ -1,8 +1,8 @@
 server {
     listen       80;
-    server_name  {{ var "SERVER_NAME" | default "localhost" }};
+    server_name  {{ var "SERVER_NAME" }};
 
-    set $root_path '{{ var "DOCUMENT_ROOT" | default "/usr/share/nginx/html" }}';
+    set $root_path '{{ var "DOCUMENT_ROOT" }}';
 
     location / {
         root      $root_path;

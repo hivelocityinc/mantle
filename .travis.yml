@@ -12,7 +12,7 @@ env:
 before_install:
   - docker build -t hivelocityinc/mantle .
   - docker images
-  - docker run -d --name $TARGET_CONTAINER_ID -p 80:80 hivelocityinc/mantle
+  - docker run -d --name $TARGET_CONTAINER_ID -p 80:80 -p 3306:3306 hivelocityinc/mantle
   - docker ps -a
 
 script:

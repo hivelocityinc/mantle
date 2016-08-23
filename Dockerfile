@@ -1,7 +1,15 @@
 FROM alpine:3.4
+
 MAINTAINER Ryuichi Komeda <komeda@hivelocity.co.jp>
 
-ENV ENTRYKIT_VERSION 0.4.0
+ENV ENTRYKIT_VERSION=0.4.0 \
+    WORKER_PROCESSES=1 \
+    SERVER_NAME='localhost' \
+    DOCUMENT_ROOT='/usr/share/nginx/html' \
+    MYSQL_ROOT_PASSWORD='root' \
+    MYSQL_DATABASE='mantle' \
+    MYSQL_USER='mantle' \
+    MYSQL_PASSWORD='mantle'
 
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
   # Installs EntryKit
@@ -38,19 +46,28 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
     php5-imagick \
     php5-memcache \
     php5-redis && \
+  # Installs MariaDB
+  apk add --update \
+    mariadb mariadb-client && \
   # Clean up cache
   rm -rf /var/cache/apk/*
 
 COPY files /
 
+# Set up MariaDB
+RUN chmod -x mysql_setup.sh && \
+  /bin/sh mysql_setup.sh
+
 RUN chmod +x /entrypoint.sh
 
-EXPOSE 80 443
+EXPOSE 80 443 3306
 
 ENTRYPOINT [ \
 "render", \
   "/etc/nginx/nginx.conf", \
   "/etc/nginx/conf.d/default.conf", \
   "/etc/php5/php.ini", \
-  "/etc/php5/php-fpm.conf", "--", \
-"/entrypoint.sh" ]
+  "/etc/php5/php-fpm.conf", \
+  "/etc/mysql/my.cnf", "--", \
+"/entrypoint.sh" \
+]
