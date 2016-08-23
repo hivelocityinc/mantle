@@ -16,7 +16,7 @@ before_install:
   - docker ps -a
 
 script:
-  - script/travis_test.sh
+  - sh script/travis_test.sh
 
 after_success:
   - '[ "$TRAVIS_BRANCH" == master ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && docker push hivelocityinc/mantle'
