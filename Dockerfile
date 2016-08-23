@@ -1,4 +1,5 @@
 FROM alpine:3.4
+
 MAINTAINER Ryuichi Komeda <komeda@hivelocity.co.jp>
 
 ENV ENTRYKIT_VERSION=0.4.0 \
