@@ -16,8 +16,7 @@ before_install:
   - docker ps -a
 
 script:
-  - sleep 10
-  - bundle exec rake
+  - travis_test.sh
 
 after_success:
   - '[ "$TRAVIS_BRANCH" == master ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && docker push hivelocityinc/mantle'
