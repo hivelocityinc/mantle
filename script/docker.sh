@@ -31,7 +31,9 @@ run() {
 
   docker run -d \
     --name ${CONTAINER_NAME} \
+    -u root \
     -p 80:80 \
+    -p 3306:3306 \
     ${IMAGE_NAME}:latest
 
   echo "${GREEN}==> Running image!${CLEAR}"
