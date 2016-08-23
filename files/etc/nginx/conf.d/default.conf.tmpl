@@ -4,6 +4,9 @@ server {
 
     set $root_path '{{ var "DOCUMENT_ROOT" }}';
 
+    error_log /var/log/nginx/{{ var "SERVER_NAME" }}.error.log warn;
+    access_log /var/log/nginx/{{ var "SERVER_NAME" }}.access.log main;
+
     location / {
         root      $root_path;
         index     index.html index.php;
@@ -11,16 +14,18 @@ server {
     }
 
     location ~*\.php$ {
-        fastcgi_pass 127.0.0.1:9000;
-        fastcgi_index index.php;
-        include fastcgi_params;
-        fastcgi_param SCRIPT_FILENAME $root_path$fastcgi_script_name;
-        fastcgi_param DOCUMENT_ROOT $root_path;
-        fastcgi_param HTTPS off;
-        fastcgi_read_timeout    10;
+        fastcgi_pass            127.0.0.1:9000;
+        fastcgi_index           index.php;
+        include                 fastcgi_params;
+        fastcgi_param           SCRIPT_FILENAME $root_path$fastcgi_script_name;
+        fastcgi_param           DOCUMENT_ROOT $root_path;
+        fastcgi_param           HTTPS off;
+        fastcgi_buffers         8 128k;
+        fastcgi_buffer_size     8k;
+        fastcgi_read_timeout    100;
         fastcgi_connect_timeout 10;
         fastcgi_send_timeout    10;
-        fastcgi_store off;
+        fastcgi_store           off;
     }
 
     location ~ /\.ht {
