@@ -34,13 +34,14 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
     php5 \
     php5-common \
     php5-fpm \
-    php5-mysql \
+    php5-mysqli \
     php5-pdo \
     php5-gd \
     php5-xml \
     php5-json \
     php5-mcrypt \
     php5-imap \
+    php5-zlib \
     php5-opcache \
     php5-openssl \
     php5-imagick \
@@ -49,25 +50,29 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
   # Installs MariaDB
   apk add --update \
     mariadb mariadb-client && \
+  rm -rf /var/lib/mysql && mkdir -p /var/lib/mysql /var/run/mysqld && \
+  chown -R mysql:mysql /var/lib/mysql /var/run/mysqld && \
+  chmod 777 /var/run/mysqld && \
   # Clean up cache
   rm -rf /var/cache/apk/*
 
+VOLUME /var/lib/mysql
+
 COPY files /
 
-# Set up MariaDB
-RUN chmod -x mysql_setup.sh && \
-  /bin/sh mysql_setup.sh
-
-RUN chmod +x /entrypoint.sh
+RUN chmod +x /entrypoint.sh && \
+  chmod +x /mysql_setup.sh
 
 EXPOSE 80 443 3306
 
 ENTRYPOINT [ \
-"render", \
-  "/etc/nginx/nginx.conf", \
-  "/etc/nginx/conf.d/default.conf", \
-  "/etc/php5/php.ini", \
-  "/etc/php5/php-fpm.conf", \
-  "/etc/mysql/my.cnf", "--", \
-"/entrypoint.sh" \
+  "render", \
+    "/etc/nginx/nginx.conf", \
+    "/etc/nginx/conf.d/default.conf", \
+    "/etc/php5/php.ini", \
+    "/etc/php5/php-fpm.conf", \
+    "/etc/mysql/my.cnf", "--", \
+  "prehook", \
+    "/bin/sh /mysql_setup.sh", "--", \
+  "/entrypoint.sh" \
 ]
