@@ -76,7 +76,8 @@ ENTRYPOINT [ \
     "/etc/nginx/conf.d/default.conf", \
     "/etc/php5/php.ini", \
     "/etc/php5/php-fpm.conf", \
-    "/etc/mysql/my.cnf", "--", \
+    "/etc/mysql/my.cnf", \
+    "/etc/supervisor/supervisord.conf", "--", \
   "prehook", \
     "/bin/sh /mysql_setup.sh", "--", \
   "/entrypoint.sh" \
