@@ -9,7 +9,9 @@ ENV ENTRYKIT_VERSION=0.4.0 \
     MYSQL_ROOT_PASSWORD='root' \
     MYSQL_DATABASE='mantle' \
     MYSQL_USER='mantle' \
-    MYSQL_PASSWORD='mantle'
+    MYSQL_PASSWORD='mantle' \
+    MEMCACHED_MEMUSAGE=64 \
+    MEMCACHED_MAXCONN=1024
 
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
   # Installs EntryKit
