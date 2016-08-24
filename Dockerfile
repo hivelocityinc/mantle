@@ -45,14 +45,19 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
     php5-opcache \
     php5-openssl \
     php5-imagick \
-    php5-memcache \
+    php5-memcached \
     php5-redis && \
   # Installs MariaDB
   apk add --update \
     mariadb mariadb-client && \
-  rm -rf /var/lib/mysql && mkdir -p /var/lib/mysql /var/run/mysqld && \
+  rm -rf /var/lib/mysql && \
+  mkdir -p /var/lib/mysql /var/run/mysqld && \
   chown -R mysql:mysql /var/lib/mysql /var/run/mysqld && \
   chmod 777 /var/run/mysqld && \
+  # Installs Memcached
+  apk add --update \
+    memcached && \
+  mkdir -p /var/run/memcached && \
   # Clean up cache
   rm -rf /var/cache/apk/*
 
