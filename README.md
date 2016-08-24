@@ -11,8 +11,9 @@ It is based on Alpine Linux and includes middleware of the following:
 
 - **Supervisor** : 3.2.0
 - **Nginx** : 1.10
-- **PHP** 5.6
-- **MySQL(MariaDB)** 10.1
+- **PHP** : 5.6
+- **MySQL(MariaDB)** : 10.1
+- **Memcached** : 1.4
 
 
 ## Usage
@@ -31,14 +32,15 @@ You can change the config of middleware when you set environment value of the fo
 
 | ENV Key | Default Value | Description |
 |:---|:---|:---|
-| WORKER_PROCESSES | `1` | worker processes of nginx |
-| SERVER_NAME | `localhost` | hostname |
-| DOCUMENT_ROOT | `/usr/share/nginx/html` | document root path |
-| MYSQL_ROOT_PASSWORD | `root` | password of mysql root user |
-| MYSQL_DATABASE | `mantle` | database name |
-| MYSQL_USER | `mantle` | database user |
-| MYSQL_PASSWORD | `mantle` | database password for $MYSQL_USER |
-
+| **NGINX_WORKER_PROCESSES** | `1` | Ningx: worker processes |
+| **NGINX_SERVER_NAME** | `localhost` | Ningx: server name |
+| **NGINX_DOCUMENT_ROOT** | `/usr/share/nginx/html` | Nginx: document root path |
+| **MYSQL_ROOT_PASSWORD** | `root` | MySQL: root user's password |
+| **MYSQL_DATABASE** | `mantle` | MySQL: database name |
+| **MYSQL_USER** | `mantle` | MySQL: database user |
+| **MYSQL_PASSWORD** | `mantle` | MySQL: database password for $MYSQL_USER |
+| **MEMCACHED_MEMUSAGE** | `64` | Memcached: memory usage size |
+| **MEMCACHED_MAXCONN** | `1024`| Memcached: maximum number of concurrent connections |
 
 **Example**
 

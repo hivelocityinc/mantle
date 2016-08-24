@@ -3,13 +3,15 @@ FROM alpine:3.4
 MAINTAINER Ryuichi Komeda <komeda@hivelocity.co.jp>
 
 ENV ENTRYKIT_VERSION=0.4.0 \
-    WORKER_PROCESSES=1 \
-    SERVER_NAME='localhost' \
-    DOCUMENT_ROOT='/usr/share/nginx/html' \
+    NGINX_WORKER_PROCESSES=1 \
+    NGINX_SERVER_NAME='localhost' \
+    NGINX_DOCUMENT_ROOT='/usr/share/nginx/html' \
     MYSQL_ROOT_PASSWORD='root' \
     MYSQL_DATABASE='mantle' \
     MYSQL_USER='mantle' \
-    MYSQL_PASSWORD='mantle'
+    MYSQL_PASSWORD='mantle' \
+    MEMCACHED_MEMUSAGE=64 \
+    MEMCACHED_MAXCONN=1024
 
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
   # Installs EntryKit
@@ -76,7 +78,8 @@ ENTRYPOINT [ \
     "/etc/nginx/conf.d/default.conf", \
     "/etc/php5/php.ini", \
     "/etc/php5/php-fpm.conf", \
-    "/etc/mysql/my.cnf", "--", \
+    "/etc/mysql/my.cnf", \
+    "/etc/supervisor/supervisord.conf", "--", \
   "prehook", \
     "/bin/sh /mysql_setup.sh", "--", \
   "/entrypoint.sh" \
