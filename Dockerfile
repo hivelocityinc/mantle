@@ -3,9 +3,9 @@ FROM alpine:3.4
 MAINTAINER Ryuichi Komeda <komeda@hivelocity.co.jp>
 
 ENV ENTRYKIT_VERSION=0.4.0 \
-    WORKER_PROCESSES=1 \
-    SERVER_NAME='localhost' \
-    DOCUMENT_ROOT='/usr/share/nginx/html' \
+    NGINX_WORKER_PROCESSES=1 \
+    NGINX_SERVER_NAME='localhost' \
+    NGINX_DOCUMENT_ROOT='/usr/share/nginx/html' \
     MYSQL_ROOT_PASSWORD='root' \
     MYSQL_DATABASE='mantle' \
     MYSQL_USER='mantle' \

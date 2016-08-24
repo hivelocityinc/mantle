@@ -1,11 +1,11 @@
 server {
     listen       80;
-    server_name  {{ var "SERVER_NAME" }};
+    server_name  {{ var "NGINX_SERVER_NAME" }};
 
-    set $root_path '{{ var "DOCUMENT_ROOT" }}';
+    set $root_path '{{ var "NGINX_DOCUMENT_ROOT" }}';
 
-    error_log /var/log/nginx/{{ var "SERVER_NAME" }}.error.log warn;
-    access_log /var/log/nginx/{{ var "SERVER_NAME" }}.access.log main;
+    error_log /var/log/nginx/{{ var "NGINX_SERVER_NAME" }}.error.log warn;
+    access_log /var/log/nginx/{{ var "NGINX_SERVER_NAME" }}.access.log main;
 
     location / {
         root      $root_path;
