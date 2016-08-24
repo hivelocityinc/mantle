@@ -1,22 +1,19 @@
 sudo: required
-
 language: ruby
 cache: bundler
-
 services:
   - docker
-
 env:
   - TARGET_CONTAINER_ID=mantle
-
 before_install:
   - docker build -t hivelocityinc/mantle .
   - docker images
   - docker run -d --name $TARGET_CONTAINER_ID -p 80:80 -p 3306:3306 hivelocityinc/mantle
   - docker ps -a
-
 script:
-  - . ./script/run_test.sh
-
+  - ". ./script/run_test.sh"
 after_success:
   - '[ "$TRAVIS_BRANCH" == master ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && docker push hivelocityinc/mantle'
+notifications:
+  slack:
+    secure: g/EkhLYtjbu75iGKIkjsqFkRyWgp9/Ym98dlJmwfh3OkczZRbPmQelc/nFUpQ0ZCARIt+o5Ul4dNS8Da9uIU6IVy41vB4sGtMhV3sGoSHDjQVDbNerdTYFinIRMgplMzR7d/pffMjH3YLOoGjvX90or6KZSVuo2eBHTGBmuAPDgq1IwifiRLCpnJOWXKIGdE/GPbYIz+NO7H16KH/ZlYIVx/gREW5wI3eyQQgRkMc2dyT2SuOs2/zY89QobFYmAUYQ+VL+IgvyszhAKTI4hElQ2F39gsV50NJPW8Trhuve+Wm6b75y1ItKf79qO4piRpVWnBX8rkEdVc4EkC9+L//Kl+VRCrvtkhsSluNdm9i+zS6lCVpefKjB6Kp9Wjatz1UhrKFSeoiBqON9VTRpCtjUZoqFlDVI8p0MvJBzwarAR0S5+pL8x80a52OgzDZiiF3DjsnkJlGcmy+F6ubMqlrhQpg6NJ+jlxIfHE19P2ZLc25fr6n4fi0xSryw1uSFXLJiV1BWTKbVVFzbh6CY9gwXepsmWaUIeqBIHzSJQQbq56Mn6mP+yccU1L6JizKpn7cvyGEUPfZ4NweYEp3apWyZbx/asXYvpxmrl+JCBy9U1+23SrBx4y0fG8VUNsjr8ijAHW7XRQwuJ0S7WlW/q7x32x9ZSPslHb9r+kNhScXIk=
