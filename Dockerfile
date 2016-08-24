@@ -60,6 +60,9 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
   apk add --update \
     memcached && \
   mkdir -p /var/run/memcached && \
+  apk add --update \
+    redis && \
+  mkdir -p /etc/redis && \
   # Clean up cache
   rm -rf /var/cache/apk/*
 
@@ -79,6 +82,7 @@ ENTRYPOINT [ \
     "/etc/php5/php.ini", \
     "/etc/php5/php-fpm.conf", \
     "/etc/mysql/my.cnf", \
+    "/etc/redis/redis.conf", \
     "/etc/supervisor/supervisord.conf", "--", \
   "prehook", \
     "/bin/sh /mysql_setup.sh", "--", \
