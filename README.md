@@ -1,9 +1,9 @@
 # WIP: Mantle
 
 [![Travis](https://img.shields.io/travis/hivelocityinc/mantle.svg?style=flat-square)](https://travis-ci.org/hivelocityinc/mantle)
+[![Docker Pulls](https://img.shields.io/docker/pulls/hivelocityinc/mantle.svg?maxAge=2592000?style=flat-square)](https://hub.docker.com/r/hivelocityinc/mantle/)
 
 The Dockerfile for development environment with LEMP Stack.
-
 
 ## Includes
 
