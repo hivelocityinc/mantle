@@ -70,8 +70,7 @@ VOLUME /var/lib/mysql
 
 COPY files /
 
-RUN chmod +x /entrypoint.sh && \
-  chmod +x /mysql_setup.sh
+RUN chmod +x /entrypoint.sh
 
 EXPOSE 80 443 3306
 
@@ -84,7 +83,5 @@ ENTRYPOINT [ \
     "/etc/mysql/my.cnf", \
     "/etc/redis/redis.conf", \
     "/etc/supervisor/supervisord.conf", "--", \
-  "prehook", \
-    "/bin/sh /mysql_setup.sh", "--", \
   "/entrypoint.sh" \
 ]
