@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 <title>Welcome, Mantle!</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Baloo+Chettan">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
 <style>
 body {
   background: #3c7e8c;
   color: #fff;
+  -webkit-font-smoothing: antialiased;
 }
 h1 {
   position: absolute;
@@ -18,14 +20,24 @@ h1 {
   width: 100%;
   text-align: center;
   font-size: 60px;
-  font-family: 'Baloo Chettan', cursive;
+  font-family: 'Nunito', cursive;
+  font-weight: bold;
 }
 h1 span {
   color: #ded654;
 }
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 46px;
+    line-height: 1.1;
+  }
+  h1 span {
+    display: block;
+  }
+}
 </style>
 </head>
 <body>
-  <h1>Welcome, <span>Mantle</span>!</h1>
+  <h1>Welcome, <span>Mantle!</span></h1>
 </body>
 </html>
