@@ -43,33 +43,28 @@ spec() {
   echo "${BLUE}==> Start to image test...${CLEAR}"
 
   export TARGET_CONTAINER_ID=${CONTAINER_NAME}
-  . ./script/run_test.sh
+  sh ./script/run_test.sh
 
   echo "${GREEN}==> Finished image test!${CLEAR}"
 }
 
 if [ $# -eq 1 ]; then
-  if [ $1 = "clean" ]; then
-    clean
-  fi
-
-  if [ $1 = "build" ]; then
-    clean
-    build
-  fi
-
-  if [ $1 = "run" ]; then
-    clean
-    build
-    run
-  fi
-
-  if [ $1 = "test" ]; then
-    clean
-    build
-    run
-    spec
-  fi
+  case "$1" in
+    "clean")
+      clean ;;
+    "build")
+      clean
+      build ;;
+    "run")
+      clean
+      build
+      run ;;
+    "test")
+      clean
+      build
+      run
+      spec ;;
+  esac
 fi
 
 exit 0
