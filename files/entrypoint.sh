@@ -9,22 +9,22 @@ if [ ! -d "/var/lib/mysql/mysql" ]; then
     mysql_install_db --datadir="/var/lib/mysql" --rpm
 
     /usr/bin/mysqld --user=root --skip-networking &
-		pid="$!"
+    pid="$!"
 
     mysql=( mysql --protocol=socket -uroot )
 
     for i in {30..0}; do
-			if echo 'SELECT 1' | "${mysql[@]}" &> /dev/null; then
-				break
-			fi
-			echo 'MySQL init process in progress...'
-			sleep 1
-		done
+      if echo 'SELECT 1' | "${mysql[@]}" &> /dev/null; then
+        break
+      fi
+      echo 'MySQL init process in progress...'
+      sleep 1
+    done
 
-		if [ "$i" = 0 ]; then
-			echo >&2 'MySQL init process failed.'
-			exit 1
-		fi
+    if [ "$i" = 0 ]; then
+      echo >&2 'MySQL init process failed.'
+      exit 1
+    fi
 
     "${mysql[@]}" <<-EOSQL
       UPDATE mysql.user SET Password=PASSWORD('${MYSQL_ROOT_PASSWORD}') WHERE User='root' ;
@@ -41,7 +41,7 @@ EOSQL
     echo "CREATE DATABASE IF NOT EXISTS \`$MYSQL_DATABASE\` ;" | "${mysql[@]}"
     echo "Created MySQL Database: $MYSQL_DATABASE"
     echo
-		mysql+=( "$MYSQL_DATABASE" )
+    mysql+=( "$MYSQL_DATABASE" )
 
     "${mysql[@]}" <<-EOSQL
       CREATE USER '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}' ;
@@ -67,10 +67,10 @@ EOSQL
       done
     fi
 
-    if ! kill -s TERM "$pid" || ! wait "$pid"; then
-			echo >&2 'MySQL init process failed.'
-			exit 1
-		fi
+  if ! kill -s TERM "$pid" || ! wait "$pid"; then
+    echo >&2 'MySQL init process failed.'
+    exit 1
+  fi
 fi
 
 exec /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
