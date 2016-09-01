@@ -15,7 +15,7 @@ ENV ENTRYKIT_VERSION=0.4.0 \
 
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
   # Installs EntryKit
-  apk add --update openssl && \
+  apk add --update openssl bash && \
   wget https://github.com/progrium/entrykit/releases/download/v${ENTRYKIT_VERSION}/entrykit_${ENTRYKIT_VERSION}_Linux_x86_64.tgz && \
   tar -xvzf entrykit_${ENTRYKIT_VERSION}_Linux_x86_64.tgz && \
   rm entrykit_${ENTRYKIT_VERSION}_Linux_x86_64.tgz && \
