@@ -73,4 +73,7 @@ EOSQL
   fi
 fi
 
+# Change owner/group in document root directory
+chown -R nginx:nginx $NGINX_DOCUMENT_ROOT
+
 exec /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
