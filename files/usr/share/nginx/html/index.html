@@ -3,41 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-<title>Welcome, Mantle!</title>
+<title>Welcome to the Mantle!</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
-<style>
-body {
-  background: #3c7e8c;
-  color: #fff;
-  -webkit-font-smoothing: antialiased;
-}
-h1 {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  margin-top: -30px;
-  display: block;
-  width: 100%;
-  text-align: center;
-  font-size: 60px;
-  font-family: 'Nunito', cursive;
-  font-weight: bold;
-}
-h1 span {
-  color: #ded654;
-}
-@media screen and (max-width: 600px) {
-  h1 {
-    font-size: 46px;
-    line-height: 1.1;
-  }
-  h1 span {
-    display: block;
-  }
-}
-</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Welcome, <span>Mantle!</span></h1>
+  <div class="wrapper">
+    <h1>Welcome to the <span>Mantle!</span></h1>
+    <h2>This is the Development Environment for PHP on Docker.</h2>
+    <ul class="icons">
+      <li><a href="https://github.com/hivelocityinc/mantle" target="_blank"><i class="fa fa-github-alt"></i>GitGub</a></li>
+      <li><a href="https://hub.docker.com/r/hivelocityinc/mantle/" target="_blank"><i class="fa fa-rocket"></i>Docker Hub</a></li>
+    </ul>
+    <p class="copyright">&copy; Copyright Hivelocity inc.</p>
+  </div>
 </body>
 </html>
