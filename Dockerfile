@@ -47,6 +47,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
     php5-fpm \
     php5-mysqli \
     php5-pdo \
+    php5-pdo_mysql \
     php5-gd \
     php5-xml \
     php5-json \
