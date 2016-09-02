@@ -33,6 +33,7 @@ run() {
     --name ${CONTAINER_NAME} \
     -u root \
     -p 80:80 \
+    -p 443:443 \
     -p 3306:3306 \
     ${IMAGE_NAME}:latest
 

@@ -17,6 +17,18 @@ describe file('/etc/nginx/conf.d/default.conf') do
   it { should be_file }
 end
 
+describe file('/etc/nginx/conf.d/default.ssl.conf') do
+  it { should be_file }
+end
+
+describe file('/etc/nginx/ssl/server.crt') do
+  it { should be_file }
+end
+
+describe file('/etc/nginx/ssl/server.key') do
+  it { should be_file }
+end
+
 describe command('nginx -t') do
   its(:exit_status) { should eq 0 }
 end
@@ -26,5 +38,9 @@ describe process("nginx") do
 end
 
 describe port(80) do
+  it { should be_listening }
+end
+
+describe port(443) do
   it { should be_listening }
 end
