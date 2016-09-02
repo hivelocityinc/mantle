@@ -31,6 +31,15 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
   apk add --update \
     nginx && \
   mkdir /var/run/nginx/ && \
+  mkdir /etc/nginx/ssl/ && \
+  openssl genrsa -out /etc/nginx/ssl/server.key 2048 2>&1 && \
+  openssl req -new -batch \
+    -key /etc/nginx/ssl/server.key \
+    -out /etc/nginx/ssl/server.csr && \
+  openssl x509 -req -days 365 \
+    -in /etc/nginx/ssl/server.csr \
+    -signkey /etc/nginx/ssl/server.key \
+    -out /etc/nginx/ssl/server.crt 2>&1 && \
   # Installs PHP
   apk add --update \
     php5 \
@@ -77,11 +86,17 @@ EXPOSE 80 443 3306
 ENTRYPOINT [ \
   "render", \
     "/etc/nginx/nginx.conf", \
-    "/etc/nginx/conf.d/default.conf", \
+    "/etc/nginx/conf.d/default.conf", "--", \
+  "render", \
+    "/etc/nginx/conf.d/default.ssl.conf", "--", \
+  "render", \
     "/etc/php5/php.ini", \
-    "/etc/php5/php-fpm.conf", \
-    "/etc/mysql/my.cnf", \
-    "/etc/redis/redis.conf", \
+    "/etc/php5/php-fpm.conf", "--", \
+  "render", \
+    "/etc/mysql/my.cnf", "--", \
+  "render", \
+    "/etc/redis/redis.conf", "--", \
+  "render", \
     "/etc/supervisor/supervisord.conf", "--", \
   "/entrypoint.sh" \
 ]
