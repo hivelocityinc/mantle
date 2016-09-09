@@ -25,5 +25,5 @@ command=/usr/bin/pidproxy /var/run/mysqld/mysqld.pid /usr/bin/mysqld --datadir=/
 command=/usr/bin/memcached -p 11211 -u memcached -m {{ var "MEMCACHED_MEMUSAGE" }} -c {{ var "MEMCACHED_MAXCONN" }} -P /var/run/memcached/memcached.pid
 
 [program:redis]
-command=/usr/bin/redis-server /etc/redis.conf
+command=/usr/bin/redis-server /etc/redis/redis.conf
 user=redis
