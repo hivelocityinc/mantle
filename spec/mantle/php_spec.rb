@@ -17,6 +17,10 @@ describe file('/etc/php5/php-fpm.conf') do
   it { should be_file }
 end
 
+describe file('/var/log/php-fpm/php-fpm.log') do
+  it { should be_file }
+end
+
 describe port(9000) do
   it { should be_listening }
 end

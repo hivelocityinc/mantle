@@ -25,13 +25,12 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
   # Installs Supervisor
   apk add --update \
     supervisor && \
-  mkdir /var/run/supervisor/ && \
+  mkdir -p /var/run/supervisor/ /var/log/supervisor/ && \
   rm -rf /etc/supervisord.conf && \
   # Installs Nginx
   apk add --update \
     nginx && \
-  mkdir /var/run/nginx/ && \
-  mkdir /etc/nginx/ssl/ && \
+  mkdir -p /var/run/nginx/ /etc/nginx/ssl/ && \
   openssl genrsa -out /etc/nginx/ssl/server.key 2048 2>&1 && \
   openssl req -new -batch \
     -key /etc/nginx/ssl/server.key \
@@ -59,6 +58,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
     php5-imagick \
     php5-memcached \
     php5-redis && \
+  mkdir -p /var/log/php-fpm/ && \
   # Installs MariaDB
   apk add --update \
     mariadb mariadb-client && \
