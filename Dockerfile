@@ -49,6 +49,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
     php5-phar \
     php5-pdo \
     php5-pdo_mysql \
+    php5-dom \
     php5-gd \
     php5-xml \
     php5-json \
@@ -60,6 +61,8 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
     php5-imagick \
     php5-memcached \
     php5-redis && \
+  curl -sS https://getcomposer.org/installer | php && \
+  mv composer.phar /usr/bin/composer && \
   # Installs MariaDB
   apk add --update \
     mariadb mariadb-client && \
