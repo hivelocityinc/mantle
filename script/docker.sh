@@ -65,6 +65,8 @@ if [ $# -eq 1 ]; then
       build
       run
       spec ;;
+    "spec")
+      spec ;;
   esac
 fi
 
