@@ -15,7 +15,7 @@ ENV ENTRYKIT_VERSION=0.4.0 \
 
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
   # Installs EntryKit
-  apk add --update openssl bash && \
+  apk add --update openssl curl bash && \
   wget https://github.com/progrium/entrykit/releases/download/v${ENTRYKIT_VERSION}/entrykit_${ENTRYKIT_VERSION}_Linux_x86_64.tgz && \
   tar -xvzf entrykit_${ENTRYKIT_VERSION}_Linux_x86_64.tgz && \
   rm entrykit_${ENTRYKIT_VERSION}_Linux_x86_64.tgz && \
@@ -45,8 +45,10 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
     php5-common \
     php5-fpm \
     php5-mysqli \
+    php5-phar \
     php5-pdo \
     php5-pdo_mysql \
+    php5-dom \
     php5-gd \
     php5-xml \
     php5-json \
@@ -59,6 +61,9 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
     php5-memcached \
     php5-redis && \
   mkdir -p /var/log/php-fpm/ && \
+  # Installs Composer
+  curl -sS https://getcomposer.org/installer | php && \
+  mv composer.phar /usr/bin/composer && \
   # Installs MariaDB
   apk add --update \
     mariadb mariadb-client && \

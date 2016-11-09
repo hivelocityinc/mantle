@@ -76,4 +76,13 @@ fi
 # Change owner/group in document root directory
 chown -R nginx:nginx $NGINX_DOCUMENT_ROOT
 
+# Run After Script
+if [ -d "/after_run" ]; then
+  for f in /after_run/*; do
+    case "$f" in
+      *.sh) sh "$f"; echo "Your scripts finished running: $f"; echo ;;
+    esac
+  done
+fi
+
 exec /usr/bin/supervisord -c /etc/supervisor/supervisord.conf

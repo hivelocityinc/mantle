@@ -30,8 +30,6 @@ $ docker pull hivelocityinc/mantle
 $ docker run -d \
   --name mantle \
   -p 80:80 \
-  -p 443:443 \
-  -p 3306:3306 \
   -v $PWD/{your_app_dir}:/var/www/html/{app_name}
   hivelocityinc/mantle
 ```
@@ -60,6 +58,17 @@ If you want to import databases data to container, to add `/initdb.d/schema` or 
 $ docker run -d \
   -v $PWD/{your_schema_dir}:/initdb.d/schema \
   -v $PWD/{your_seed_dir}:/initdb.d/sheeds \
+  hivelocityinc/mantle
+```
+
+### After script
+
+If you want to run shell script to container, to add `/after_run` volume.
+
+```bash
+# Example
+$ docker run -d \
+  -v $PWD/script/after_run.sh:/after_run/after_run.sh \
   hivelocityinc/mantle
 ```
 
