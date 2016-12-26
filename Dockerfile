@@ -43,6 +43,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
   apk add --update \
     php5 \
     php5-common \
+    php5-ctype \
     php5-fpm \
     php5-mysqli \
     php5-phar \
