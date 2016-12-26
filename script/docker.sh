@@ -2,7 +2,7 @@
 
 set -e
 
-CONTAINER_NAME="mantle"
+CONTAINER_NAME="mantle-dev"
 IMAGE_NAME="hivelocityinc/"${CONTAINER_NAME}
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
