@@ -21,6 +21,10 @@ describe file('/var/run/mysqld') do
   it { should be_directory }
 end
 
+describe file('/var/log/mysql/error.log') do
+  it { should be_file }
+end
+
 describe file('/var/run/mysqld/mysqld.sock') do
   it { should be_socket }
 end

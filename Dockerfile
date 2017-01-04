@@ -69,8 +69,8 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
   apk add --update \
     mariadb mariadb-client && \
   rm -rf /var/lib/mysql && \
-  mkdir -p /var/lib/mysql /var/run/mysqld && \
-  chown -R mysql:mysql /var/lib/mysql /var/run/mysqld && \
+  mkdir -p /var/lib/mysql /var/run/mysqld /var/log/mysql && \
+  chown -R mysql:mysql /var/lib/mysql /var/run/mysqld /var/log/mysql && \
   chmod 777 /var/run/mysqld && \
   # Installs Memcached
   apk add --update \
