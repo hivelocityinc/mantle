@@ -13,7 +13,7 @@ before_install:
 script:
   - ". ./script/run_test.sh"
 after_success:
-  - '[ "$TRAVIS_BRANCH" == master ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && docker push hivelocityinc/mantle'
+  - ". ./script/push.sh"
 notifications:
   slack:
     secure: RdjPDYjZCpdNSTiDMJIfESXK3iPe6Mwg/2B3XXV5dBOYfafomeCLW1Hva0Z0MdB4qa3SnloBJSO7cc475IyPxrpayHP5B6VKBhZ6WL8kTnfMCWPwf56fInN8S5UHeGndDML/NsMPcoymCWbhJHOgHFyTHPTZOY+xytG1xzWaz/VN4Ee3EY2RNpchlqsXMzv3dHRkVkIbEsZfcs6364CaeCnVzgfxk4ai9ca/8/r3xuJrNKUhd9Dh1Iwubf21oJc2k/KtHYBjgfL6Q0o8Jt4HqtILsYAyO05zzZgmrzFr6O7mv4DLXfAqPAZTmPb1hXhidAeFaMuTCD0vffDvvF3iQjln5g5bY9hgYz1BUxZb9siIXBq9zIu62ql1cjc9enxkZNsVpXCbFCeWlsREJeHCbKp2KiP7e2g3j/DaQAMak7a/V/aaybmfUkYibSoCfpXTTN0qiKtDkD6q/5Bh12QyV1TktVbd//R0qmfnIY0skvicCEq+maVlD4VLe2B51moSLZlNb2qbEKA0m7G1IjH6IsrarKZ07nYWqI6tDCUju/1RPtlz1QD4MajKHSIFEtupmFeHImLQSSgteIlP/FvMnzaMNpoApgOPqSwbE8Sdd7QD0IXpsvRBOUDTMGplopqdIqluR81sHk2lcYLaQDBgkQSI8FZqJPTlORd0sXpv0MA=
