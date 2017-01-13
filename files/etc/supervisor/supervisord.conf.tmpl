@@ -17,7 +17,7 @@ supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
 command = /usr/sbin/nginx -g "daemon off;"
 
 [program:php-fpm]
-command = /usr/bin/php-fpm --nodaemonize --fpm-config /etc/php5/php-fpm.conf
+command = /usr/sbin/php-fpm7 --nodaemonize --fpm-config /etc/php7/php-fpm.conf
 
 [program:mysqld]
 command = /usr/bin/pidproxy /var/run/mysqld/mysqld.pid /usr/bin/mysqld --datadir=/var/lib/mysql --socket=/var/run/mysqld/mysqld.sock --pid-file=/var/run/mysqld/mysqld.pid --basedir=/usr --user=root

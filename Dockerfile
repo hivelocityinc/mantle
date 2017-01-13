@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM alpine:3.5
 
 MAINTAINER Ryuichi Komeda <komeda@hivelocity.co.jp>
 
@@ -41,28 +41,28 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
     -out /etc/nginx/ssl/server.crt 2>&1 && \
   # Installs PHP
   apk add --update \
-    php5 \
-    php5-common \
-    php5-ctype \
-    php5-fpm \
-    php5-mysqli \
-    php5-phar \
-    php5-pdo \
-    php5-pdo_mysql \
-    php5-dom \
-    php5-gd \
-    php5-xml \
-    php5-json \
-    php5-mcrypt \
-    php5-imap \
-    php5-zlib \
-    php5-opcache \
-    php5-openssl \
-    php5-imagick \
-    php5-memcached \
-    php5-redis && \
+    php7 \
+    php7-common \
+    php7-ctype \
+    php7-fpm \
+    php7-mysqli \
+    php7-phar \
+    php7-pdo \
+    php7-pdo_mysql \
+    php7-dom \
+    php7-gd \
+    php7-xml \
+    php7-json \
+    php7-mcrypt \
+    php7-mbstring \
+    php7-imap \
+    php7-zlib \
+    php7-opcache \
+    php7-openssl \
+    php7-memcached \
+    php7-redis && \
   mkdir -p /var/log/php-fpm/ && \
-  # Installs Composer
+  ln -s /usr/bin/php7 /usr/bin/php && \
   curl -sS https://getcomposer.org/installer | php && \
   mv composer.phar /usr/bin/composer && \
   # Installs MariaDB
@@ -97,8 +97,9 @@ ENTRYPOINT [ \
   "render", \
     "/etc/nginx/conf.d/default.ssl.conf", "--", \
   "render", \
-    "/etc/php5/php.ini", \
-    "/etc/php5/php-fpm.conf", "--", \
+    "/etc/php7/php.ini", \
+    "/etc/php7/php-fpm.conf", \
+    "/etc/php7/php-fpm.d/www.conf", "--", \
   "render", \
     "/etc/mysql/my.cnf", "--", \
   "render", \
