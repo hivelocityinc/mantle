@@ -17,7 +17,7 @@ It is based on Alpine Linux and includes middleware of the following:
 
 - **Supervisor** : 3.2.0
 - **Nginx** : 1.10
-- **PHP** : 5.6
+- **PHP** : 7
 - **MySQL(MariaDB)** : 10.1
 - **Memcached** : 1.4
 - **Redis** : 3.2
