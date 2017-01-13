@@ -17,7 +17,7 @@ It is based on Alpine Linux and includes middleware of the following:
 
 - **Supervisor** : 3.2.0
 - **Nginx** : 1.10
-- **PHP** : 7
+- **PHP** : 7.0
 - **MySQL(MariaDB)** : 10.1
 - **Memcached** : 1.4
 - **Redis** : 3.2
@@ -33,6 +33,8 @@ $ docker run -d \
   -v $PWD/{your_app_dir}:/var/www/html/{app_name}
   hivelocityinc/mantle
 ```
+
+> If you want to use the PHP5, please pull image with `hivelocityinc/mantle:php5`.
 
 ## Configuration
 
