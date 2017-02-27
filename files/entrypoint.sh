@@ -80,7 +80,7 @@ chown -R nginx:nginx $NGINX_DOCUMENT_ROOT
 if [ -d "/after_run" ]; then
   for f in /after_run/*; do
     case "$f" in
-      *.sh) sh "$f"; echo "Your scripts finished running: $f"; echo ;;
+      *.sh) sh "$f" | tee -a /var/log/after_run.log; echo "Your scripts finished running: $f"; echo ;;
     esac
   done
 fi
