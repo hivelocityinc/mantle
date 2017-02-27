@@ -35,6 +35,7 @@ run() {
     -p 80:80 \
     -p 443:443 \
     -p 3306:3306 \
+    -v $PWD/script/after_run:/after_run \
     ${IMAGE_NAME}:latest
 
   echo "${GREEN}==> Running image!${CLEAR}"
