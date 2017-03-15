@@ -33,6 +33,10 @@ describe file('/usr/bin/composer') do
   it { should be_file }
 end
 
+describe file('/usr/bin/phpunit') do
+  it { should be_file }
+end
+
 describe port(9000) do
   it { should be_listening }
 end
