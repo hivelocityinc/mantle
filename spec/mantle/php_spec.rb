@@ -33,7 +33,7 @@ describe file('/usr/bin/composer') do
   it { should be_file }
 end
 
-describe file('/usr/local/bin/phpunit') do
+describe file('/usr/bin/phpunit') do
   it { should be_file }
 end
 

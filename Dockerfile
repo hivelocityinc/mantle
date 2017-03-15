@@ -67,7 +67,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
   mv composer.phar /usr/bin/composer && \
   wget https://phar.phpunit.de/phpunit.phar && \
   chmod +x phpunit.phar && \
-  mv phpunit.phar /usr/local/bin/phpunit && \
+  mv phpunit.phar /usr/bin/phpunit && \
   # Installs MariaDB
   apk add --update \
     mariadb mariadb-client && \
